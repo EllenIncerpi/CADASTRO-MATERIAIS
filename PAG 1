@@ -8,12 +8,12 @@
     <div id="home-page">
         <header>
             <h1>Empresa NavB4</h1>
-            <p>Soluções em Gestão de Estoque</p>
+         
         </header>
         
         <div>
             <div>
-                <h2>Sobre Nossa Empresa</h2>
+                <h3>Sobre Nossa Empresa</h3>
                 <p>A Empresa NavB4 é líder no mercado de soluções de gestão de estoque, com mais de 15 anos de experiência no setor. Nossa missão é fornecer ferramentas eficientes que otimizam processos e aumentam a produtividade dos nossos clientes.</p>
                 
                 <p>Especializados em sistemas de controle de materiais, oferecemos soluções personalizadas para empresas de todos os tamanhos, desde pequenos negócios até grandes corporações.</p>

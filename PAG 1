@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Empresa NavB4 - Página Inicial</title>
+</head>
+<body>
+    <div id="home-page">
+        <header>
+            <h1>Empresa NavB4</h1>
+            <p>Soluções em Gestão de Estoque</p>
+        </header>
+        
+        <div>
+            <div>
+                <h2>Sobre Nossa Empresa</h2>
+                <p>A Empresa NavB4 é líder no mercado de soluções de gestão de estoque, com mais de 15 anos de experiência no setor. Nossa missão é fornecer ferramentas eficientes que otimizam processos e aumentam a produtividade dos nossos clientes.</p>
+                
+                <p>Especializados em sistemas de controle de materiais, oferecemos soluções personalizadas para empresas de todos os tamanhos, desde pequenos negócios até grandes corporações.</p>
+                
+                <h3>Nossos Valores</h3>
+                <ul>
+                    <li>Compromisso com a qualidade</li>
+                    <li>Inovação constante</li>
+                    <li>Atendimento personalizado</li>
+                    <li>Transparência nas operações</li>
+                </ul>
+                
+                <h3>Nossos Serviços</h3>
+                <p>Desenvolvemos sistemas completos de gestão de estoque, incluindo cadastro de materiais, controle de entrada e saída, relatórios analíticos e integração com outros sistemas empresariais.</p>
+            </div>
+            <div>
+                <a href="pag2.html" target="_blank">Cadastrar Materiais</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Material - Empresa Log4</title>
+</head>
+<body>
+
+    <h1>Empresa NavB4 - Sistema de Estoque</h1>
+    
+    <p><a href="pag1.html">← Voltar para a página inicial</a></p>
+    
+    <form action="#" method="post">
+        <h3>Cadastro de Material de Estoque: Dados do Material</h3>
+        
+        <p>
+            <label for="nome">Nome do Material:</label><br>
+            <input type="text" id="nome" name="nome">
+        </p>
+
+        <p>
+            <label for="preco">Preço do Material:</label><br>
+            <input type="text" id="preco" name="preco">
+        </p>
+        
+        <p>
+            <label for="categoria">Categoria:</label><br>
+            <select id="categoria" name="categoria">
+                <option value="">Selecione</option>
+                <option value="escritorio">Material de Escritório</option>
+                <option value="limpeza">Material de Limpeza</option>
+                <option value="informatica">Material de Informática</option>
+                <option value="outros">Outros</option>
+            </select>
+        </p>
+        
+        <p>
+            <label for="quantidade">Quantidade:</label><br>
+            <input type="number" id="quantidade" name="quantidade" min="0">
+        </p>
+        
+        <p>
+            <label for="unidade">Unidade de Medida:</label><br>
+            <select id="unidade" name="unidade">
+                <option value="">Selecione</option>
+                <option value="unidade">Unidade</option>
+                <option value="pacote">Pacote</option>
+                <option value="caixa">Caixa</option>
+                <option value="metro">Metro</option>
+                <option value="litro">Litro</option>
+            </select>
+        </p>
+        
+        <p>
+            <label for="fornecedor">Fornecedor:</label><br>
+            <input type="text" id="fornecedor" name="fornecedor">
+        </p>
+
+        <p>
+            <label for="codigo_fornecedor">Código do Fornecedor:</label><br>
+            <input type="text" id="codigo_fornecedor" name="codigo_fornecedor">
+        </p>
+
+        <p>
+            <label for="codigo_sap">Código SAP:</label><br>
+            <input type="text" id="codigo_sap" name="codigo_sap">
+        </p>
+        
+        <p>
+            <label for="local">Localização no Estoque:</label><br>
+            <input type="text" id="local" name="local">
+        </p>
+        
+        <p>
+            <input type="submit" value="Cadastrar Material">
+            <input type="reset" value="Limpar Formulário">
+        </p>
+    </form>
+
+</body>
+</html>

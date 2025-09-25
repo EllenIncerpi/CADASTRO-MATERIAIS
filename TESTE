@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Controle de Estoque</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(to right, #2c3e50, #4ca1af);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        header p {
+            opacity: 0.9;
+        }
+
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .form-section {
+            flex: 1;
+            min-width: 300px;
+            padding: 30px;
+            border-right: 1px solid #eee;
+        }
+
+        .list-section {
+            flex: 1;
+            min-width: 300px;
+            padding: 30px;
+            background-color: #f9f9f9;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #4ca1af;
+            box-shadow: 0 0 0 2px rgba(76, 161, 175, 0.2);
+        }
+
+        button {
+            background: linear-gradient(to right, #2c3e50, #4ca1af);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            width: 100%;
+            transition: transform 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #4ca1af;
+        }
+
+        .material-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .material-item {
+            background: white;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid #4ca1af;
+        }
+
+        .material-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        .material-name {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .material-category {
+            background: #e0f7fa;
+            color: #00695c;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+        }
+
+        .material-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .low-stock {
+            border-left-color: #e74c3c;
+        }
+
+        .low-stock .material-category {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .empty-list {
+            text-align: center;
+            color: #7f8c8d;
+            padding: 20px;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            
+            .form-section {
+                border-right: none;
+                border-bottom: 1px solid #eee;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Controle de Estoque</h1>
+            <p>Sistema de cadastro e gerenciamento de materiais</p>
+        </header>
+        
+        <div class="content">
+            <section class="form-section">
+                <h2>Cadastrar Novo Material</h2>
+                <form id="materialForm">
+                    <div class="form-group">
+                        <label for="materialName">Nome do Material</label>
+                        <input type="text" id="materialName" required placeholder="Ex.: Papel A4, Caneta Azul, etc.">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="materialCategory">Categoria</label>
+                        <select id="materialCategory" required>
+                            <option value="">Selecione uma categoria</option>
+                            <option value="Escritório">Material de Escritório</option>
+                            <option value="Limpeza">Material de Limpeza</option>
+                            <option value="Informática">Material de Informática</option>
+                            <option value="Elétrico">Material Elétrico</option>
+                            <option value="Hidráulico">Material Hidráulico</option>
+                            <option value="Outros">Outros</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="materialQuantity">Quantidade em Estoque</label>
+                            <input type="number" id="materialQuantity" min="0" required placeholder="0">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="materialMinQuantity">Quantidade Mínima</label>
+                            <input type="number" id="materialMinQuantity" min="0" required placeholder="0">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="materialUnit">Unidade de Medida</label>
+                        <select id="materialUnit" required>
+                            <option value="">Selecione a unidade</option>
+                            <option value="Unidade">Unidade</option>
+                            <option value="Pacote">Pacote</option>
+                            <option value="Caixa">Caixa</option>
+                            <option value="Metro">Metro</option>
+                            <option value="Litro">Litro</option>
+                            <option value="Quilograma">Quilograma</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="materialLocation">Localização no Estoque</label>
+                        <input type="text" id="materialLocation" placeholder="Ex.: Prateleira A3, Armário 2, etc.">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="materialNotes">Observações</label>
+                        <textarea id="materialNotes" rows="3" placeholder="Informações adicionais sobre o material"></textarea>
+                    </div>
+                    
+                    <button type="submit">Cadastrar Material</button>
+                </form>
+            </section>
+            
+            <section class="list-section">
+                <h2>Materiais Cadastrados</h2>
+                <div class="material-list" id="materialList">
+                    <div class="empty-list">Nenhum material cadastrado ainda</div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('materialForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Obter valores do formulário
+            const name = document.getElementById('materialName').value;
+            const category = document.getElementById('materialCategory').value;
+            const quantity = parseInt(document.getElementById('materialQuantity').value);
+            const minQuantity = parseInt(document.getElementById('materialMinQuantity').value);
+            const unit = document.getElementById('materialUnit').value;
+            const location = document.getElementById('materialLocation').value;
+            const notes = document.getElementById('materialNotes').value;
+            
+            // Criar elemento de material
+            const materialItem = document.createElement('div');
+            materialItem.className = quantity <= minQuantity ? 'material-item low-stock' : 'material-item';
+            
+            materialItem.innerHTML = `
+                <div class="material-header">
+                    <span class="material-name">${name}</span>
+                    <span class="material-category">${category}</span>
+                </div>
+                <div class="material-details">
+                    <div><strong>Quantidade:</strong> ${quantity} ${unit}</div>
+                    <div><strong>Mínimo:</strong> ${minQuantity} ${unit}</div>
+                    <div><strong>Localização:</strong> ${location || 'Não informada'}</div>
+                    <div><strong>Status:</strong> ${quantity <= minQuantity ? 'Estoque Baixo' : 'Estoque OK'}</div>
+                </div>
+                ${notes ? `<div style="margin-top: 10px; font-size: 13px;"><strong>Observações:</strong> ${notes}</div>` : ''}
+            `;
+            
+            // Adicionar à lista (substituir mensagem vazia se for o primeiro item)
+            const materialList = document.getElementById('materialList');
+            if (materialList.querySelector('.empty-list')) {
+                materialList.innerHTML = '';
+            }
+            
+            materialList.prepend(materialItem);
+            
+            // Limpar formulário
+            document.getElementById('materialForm').reset();
+            
+            // Feedback visual
+            const button = document.querySelector('button');
+            const originalText = button.textContent;
+            button.textContent = 'Material Cadastrado!';
+            button.style.background = 'linear-gradient(to right, #27ae60, #2ecc71)';
+            
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.style.background = 'linear-gradient(to right, #2c3e50, #4ca1af)';
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
